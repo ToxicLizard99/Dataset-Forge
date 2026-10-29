@@ -7,7 +7,7 @@
 - outfits and scenes for a lifestyle set
 - a face pass and a refine pass on every picture
 
-It runs as a **ComfyUI App** with 248 nodes behind 11 inputs, all local and open source.
+It runs as a **ComfyUI App** with 250 nodes behind 11 inputs. The whole stack is open: every model is open weights, every node pack is open source, and there's no closed API anywhere in the pipeline.
 
 Made for the Comfy *Open Source Higgsfield* challenge. #OpenSourceHiggsfield
 
@@ -28,7 +28,7 @@ You fill in the panel and press **Run**. Two runs make a dataset: one with the *
 | **2. Body Set** | Krea 2 + Identity Edit V2 | On a pose run: the family's other poses, with new hairstyles and lights, the body kept |
 | **3. Lifestyle** | Flux.2 Klein 9B | The body set dressed in the OUTFITS and placed in the SCENES |
 | **4. Face Pass** | Flux.2 Klein 9B + BFS Head + SAM 3.1 | Every picture gets the master face back, using the Face Set picture that best matches its angle and expression |
-| **5. Refine** | Krea 2 + BiRefNet + RTX Video Super Resolution | A last refine pass, then an upscale |
+| **5. Refine** | Krea 2 + BiRefNet + Real-ESRGAN | A last refine pass, then a 1.67x upscale |
 
 Everything is saved under `ComfyUI/output/DatasetForge/` in one folder per stage.
 
@@ -54,7 +54,6 @@ Everything is saved under `ComfyUI/output/DatasetForge/` in one folder per stage
    - [ComfyUI-Impact-Pack](https://github.com/ltdrdata/ComfyUI-Impact-Pack) and [ComfyUI-Impact-Subpack](https://github.com/ltdrdata/ComfyUI-Impact-Subpack), for face detection.
    - [ComfyUI-KJNodes](https://github.com/kijai/ComfyUI-KJNodes), for Crop By Mask And Resize.
    - [comfyui-krea2edit](https://github.com/lbouaraba/comfyui-krea2edit), for the Krea 2 identity edit.
-   - [ComfyUI_Nvidia_VFX_Nodes](https://github.com/Comfy-Org/ComfyUI_Nvidia_VFX_Nodes), for RTX Video Super Resolution. It needs an NVIDIA RTX GPU.
    - **ComfyUI-T0x**, included here. Copy `custom_nodes/ComfyUI-T0x` into `ComfyUI/custom_nodes/`. It provides Deal Rows, Choose, For Family, Pick Family, Pick Reference, Pick Size, Pick by Name, Join Lists, Split Row and Release Models.
 3. **Models.** These are listed below. Put each file in the folder shown. Subfolders such as `Krea2\` or `qwen\` must match, or you can reselect the file in its loader.
 4. **Example pictures.** Copy the `input` folder's contents into `ComfyUI/input/`.
@@ -81,6 +80,7 @@ Tested on a 12 GB RTX GPU with 32 GB of RAM. Release Models frees each model fam
 | `sam3.1_multiplex_fp16.safetensors` | `models/checkpoints/` | [Comfy-Org/sam3.1](https://huggingface.co/Comfy-Org/sam3.1/resolve/main/checkpoints/sam3.1_multiplex_fp16.safetensors) |
 | `birefnet.safetensors` | `models/background_removal/` | [Comfy-Org/BiRefNet](https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors) |
 | `face_yolov8m.pt` | `models/ultralytics/bbox/` | [Bingsu/adetailer](https://huggingface.co/Bingsu/adetailer/resolve/main/face_yolov8m.pt) |
+| `RealESRGAN_x4plus.pth` | `models/upscale_models/` | [xinntao/Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth) (BSD-3) |
 
 ### Edit and camera LoRAs
 
